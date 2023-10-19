@@ -1,5 +1,5 @@
 # DatingApp 
-# ASP.NET Core & Angular 16
+ASP.NET Core & Angular 16
 This is Dating Application with 
 Implementation drag and drop photo upload integrating into a cloud platform
 Implementation a private messaging system
