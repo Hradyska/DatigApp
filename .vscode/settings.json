@@ -1,0 +1,7 @@
+{
+    "files.autoSave": "onWindowChange",
+    "editor.fontSize": 15,
+    "editor.cursorStyle": "underline",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": false
+}
