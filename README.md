@@ -1,6 +1,6 @@
 # DatingApp 
 > [!NOTE]
-This App is in process of development!
+> This App is in process of development!
 
 
 ## ASP.NET Core & Angular 16
@@ -16,6 +16,6 @@ This App is in process of development!
 - Real time notifications and presence using SignalR
 
 > [!IMPORTANT]
-You could use Login for trying functionality.
-**login**: lisa
-**pass**: Pa$$w0rd
+> You could use Login for trying functionality.
+> **login**: lisa
+> **pass**: Pa$$w0rd
