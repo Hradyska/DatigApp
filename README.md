@@ -1,5 +1,5 @@
 # DatingApp 
-[!NOTE]
+> [!NOTE]
 This App is in process of development!
 
 
@@ -15,7 +15,7 @@ This App is in process of development!
 - Persist data using Entity Framework Core
 - Real time notifications and presence using SignalR
 
-[!IMPORTANT]
+> [!IMPORTANT]
 You could use Login for trying functionality.
 **login**: lisa
 **pass**: Pa$$w0rd
