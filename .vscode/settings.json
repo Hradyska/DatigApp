@@ -4,8 +4,12 @@
     "editor.cursorStyle": "underline",
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
-    "editor.autoClosingBrackets": "always",
+    "editor.autoClosingBrackets": "languageDefined",
     "editor.autoClosingOvertype": "always",
-    "editor.autoClosingQuotes": "always",
-    "editor.formatOnType": true
+    "editor.autoClosingQuotes": "languageDefined",
+    "editor.formatOnType": true,
+    "workbench.colorTheme": "Default Dark+",
+    "workbench.preferredDarkColorTheme": "Default Dark+",
+    "workbench.preferredHighContrastColorTheme": "Default Dark+",
+    "dotnet.server.useOmnisharp": true
 }

@@ -169,7 +169,6 @@ node_modules
 .atom-build.json
 tags
 TAGS
-
 # RIASilverlight projects
 Generated_Code
 
@@ -287,3 +286,5 @@ crossrootfs
 .terraform
 terraform.tfstate
 terraform.tfstate.backup
+API/appsettings.json
+
