@@ -14,7 +14,7 @@ export class BusyService {
     this.spinnerService.show(undefined, {
       type: 'pacman',
       bdColor: 'rgba(255,255,550)',
-      color: '#333333'
+      color: '#33333300'
     })
   }
 
