@@ -1,9 +1,6 @@
-﻿
+﻿using Microsoft.EntityFrameworkCore;
 
-using System.Runtime.CompilerServices;
-using Microsoft.EntityFrameworkCore;
-
-namespace API;
+namespace API.Helpers;
 
 public class PagedList<T> : List<T>
 {
