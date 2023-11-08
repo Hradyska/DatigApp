@@ -11,7 +11,7 @@
     "workbench.colorTheme": "Default Dark Modern",
     "workbench.preferredDarkColorTheme": "Default Dark+",
     "workbench.preferredHighContrastColorTheme": "Default Dark+",
-    "dotnet.server.useOmnisharp": true,
+    "dotnet.server.useOmnisharp": false,
     "editor.wordWrap": "on",
     "editor.autoClosingDelete": "always",
     "editor.defaultFormatter": "ms-dotnettools.csdevkit",
@@ -22,5 +22,7 @@
     "terminal.integrated.fontSize": 14,
     "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
     "terminal.integrated.tabs.defaultColor": "terminal.ansiGreen",
-    "terminal.integrated.tabs.defaultIcon": "git-branch"
+    "terminal.integrated.tabs.defaultIcon": "git-branch",
+    "csharp.format.enable": false,
+    "javascript.format.insertSpaceAfterConstructor": true
 }
