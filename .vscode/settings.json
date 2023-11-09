@@ -24,5 +24,6 @@
     "terminal.integrated.tabs.defaultColor": "terminal.ansiGreen",
     "terminal.integrated.tabs.defaultIcon": "git-branch",
     "csharp.format.enable": false,
-    "javascript.format.insertSpaceAfterConstructor": true
+    "javascript.format.insertSpaceAfterConstructor": true,
+    "dotnet.preferVisualStudioCodeFileSystemWatcher": false
 }
