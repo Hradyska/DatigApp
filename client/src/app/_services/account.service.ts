@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { User } from '../_models/user';
 import { BehaviorSubject, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { MembersService } from './members.service';
+import { UserParams } from '../_models/userParams';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +13,7 @@ export class AccountService {
   baseUrl = environment.apiUrl;
   private currentUserSource = new BehaviorSubject<User | null>(null);
   currentUser$ = this.currentUserSource.asObservable();
+  userParams: UserParams | undefined;
 
 
   constructor(private http: HttpClient) { }
@@ -42,6 +45,7 @@ export class AccountService {
   }
 
   logout() {
+
     localStorage.removeItem('user');
     this.currentUserSource.next(null);
   }
