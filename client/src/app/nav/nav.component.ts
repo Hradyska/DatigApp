@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { MembersService } from '../_services/members.service';
 import { UserParams } from '../_models/userParams';
 import { take } from 'rxjs';
+import { MemberListComponent } from '../members/member-list/member-list.component';
 
 @Component({
   selector: 'app-nav',
@@ -16,7 +17,7 @@ import { take } from 'rxjs';
 })
 export class NavComponent implements OnInit {
   model: any = {};
-  userParams: UserParams | undefined;
+
   constructor(public accountService: AccountService,
     private router: Router,
     private toastr: ToastrService) {    
@@ -28,10 +29,8 @@ export class NavComponent implements OnInit {
   login(){
     this.accountService.login(this.model).subscribe({
       next: () => {
-
         this.router.navigateByUrl('/members');
-
-      }    
+      }  
     })
   }
   logout() {
