@@ -286,9 +286,14 @@ crossrootfs
 .terraform
 terraform.tfstate
 terraform.tfstate.backup
-API/appsettings.json
 
+
+
+#VSCode
+.vscode/*
+*.code-Workspace
+
+*.db-shm
+*.db-wal
 .vscode/settings.json
-API/datingapp.db-shm
-API/datingapp.db-wal
-
+API/appsettings.json
