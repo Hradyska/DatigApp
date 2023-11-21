@@ -14,8 +14,3 @@ This App is in process of development!
 - Handling errors in the API and the SPA
 - Persist data using Entity Framework Core
 - Real time notifications and presence using SignalR
-
-[!IMPORTANT]
-You could use Login for trying functionality.
-**login**: lisa
-**pass**: Pa$$w0rd
