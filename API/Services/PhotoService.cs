@@ -12,12 +12,13 @@ public class PhotoService : IPhotoService
 
     public PhotoService(IOptions<CloudinarySettings> config)
     {
-        var acc = new Account
-        (config.Value.CloudName,
-        config.Value.ApiKey,
-        config.Value.ApiSecret);
+        var acc = new Account(
+            config.Value.CloudName,
+            config.Value.ApiKey,
+            config.Value.ApiSecret);
         _cloudinary = new Cloudinary(acc);
     }
+
     public async Task<ImageUploadResult> AddPhotoAsync(IFormFile file)
     {
         var uploadResult = new ImageUploadResult();
@@ -32,6 +33,7 @@ public class PhotoService : IPhotoService
             };
             uploadResult = await _cloudinary.UploadAsync(uploadParams);
         }
+
         return uploadResult;
     }
 

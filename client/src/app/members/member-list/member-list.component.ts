@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Member } from 'src/app/_models/member';
 import { Pagination } from 'src/app/_models/pagination';
 import { UserParams } from 'src/app/_models/userParams';
@@ -21,6 +21,7 @@ export class MemberListComponent implements OnInit {
   ngOnInit(): void {
     this.loadMembers();
   }
+
   loadMembers() {
     if (this.userParams) {
       this.memberService.setUserParams(this.userParams);

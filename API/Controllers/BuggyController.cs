@@ -25,7 +25,8 @@ public class BuggyController : BaseApiController
     {
         var thing = _context.Users.Find(-1);
 
-        if (thing == null){
+        if (thing == null)
+        {
             return NotFound();
         }
 
@@ -39,7 +40,6 @@ public class BuggyController : BaseApiController
         var thingToReturn = thing.ToString();
 
         return thingToReturn;
-        
     }
 
     [HttpGet("bad-request")]
@@ -47,5 +47,4 @@ public class BuggyController : BaseApiController
     {
         return BadRequest("This was not a good request");
     }
-
 }

@@ -9,7 +9,7 @@ import { User } from './_models/user';
 })
 export class AppComponent implements OnInit {
   title = 'Dating App';
-
+  users: any;
   constructor(private accountService: AccountService) {}
   ngOnInit(): void {
     this.setCurrentUser();

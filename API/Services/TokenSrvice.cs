@@ -19,13 +19,13 @@ public class TokenSrvice : ITokenService
         _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
         _userManager = userManager;
     }
+
     public async Task<string> CreateToken(AppUser user)
     {
         var claims = new List<Claim>
         {
-            new Claim(JwtRegisteredClaimNames.NameId, user.Id.ToString()),
-            new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName)
-
+            new (JwtRegisteredClaimNames.NameId, user.Id.ToString()),
+            new (JwtRegisteredClaimNames.UniqueName, user.UserName)
         };
 
         var roles = await _userManager.GetRolesAsync(user);
@@ -41,7 +41,7 @@ public class TokenSrvice : ITokenService
             SigningCredentials = creds
         };
         var tokenHandler = new JwtSecurityTokenHandler();
-        var token  = tokenHandler.CreateToken(tokenDescriptor);
+        var token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);
     }
 }

@@ -42,7 +42,7 @@ public class UserRepository : IUserRepository
         query = userParams.OrderBy switch
         {
             "created" => query.OrderByDescending(u => u.Created),
-            _ =>query.OrderByDescending(u => u.LastActive),
+            _ => query.OrderByDescending(u => u.LastActive),
 
         };
 
@@ -64,16 +64,19 @@ public class UserRepository : IUserRepository
             .SingleOrDefaultAsync(x => x.UserName == username);
     }
 
+    public async Task<string> GetUserGenderAsync(string username)
+    {
+        return await _context.Users
+        .Where(x => x.UserName == username)
+        .Select(g => g.Gender)
+        .FirstOrDefaultAsync();
+    }
+
     public async Task<IEnumerable<AppUser>> GetUsersAsync()
     {
         return await _context.Users
             .Include(p => p.Photos)
             .ToListAsync();
-    }
-
-    public async Task<bool> SaveAllAsync()
-    {
-        return await _context.SaveChangesAsync() > 0;
     }
 
     public void Update(AppUser user)

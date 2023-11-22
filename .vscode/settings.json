@@ -25,5 +25,23 @@
     "terminal.integrated.tabs.defaultIcon": "git-branch",
     "csharp.format.enable": false,
     "javascript.format.insertSpaceAfterConstructor": true,
-    "dotnet.preferVisualStudioCodeFileSystemWatcher": false
+    "dotnet.preferVisualStudioCodeFileSystemWatcher": false,
+    "githubIssues.ignoreCompletionTrigger": [
+        "coffeescript",
+        "diff",
+        "dockerfile",
+        "dockercompose",
+        "ignore",
+        "ini",
+        "julia",
+        "makefile",
+        "perl",
+        "powershell",
+        "python",
+        "r",
+        "ruby",
+        "shellscript",
+        "yaml",
+        "hintrc"
+    ]
 }

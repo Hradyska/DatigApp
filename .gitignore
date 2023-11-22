@@ -287,13 +287,11 @@ crossrootfs
 terraform.tfstate
 terraform.tfstate.backup
 
-
-
 #VSCode
-.vscode/*
 *.code-Workspace
 
 *.db-shm
 *.db-wal
-.vscode/settings.json
+
 API/appsettings.json
+
