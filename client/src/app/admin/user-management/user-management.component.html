@@ -9,8 +9,8 @@
         </thead>
         <tbody>
             <tr *ngFor="let user of users">
-                <td>{{user.username}}</td>
-                <td>{{user.roles}}</td>
+                <td style="color: aliceblue;">{{user.username}}</td>
+                <td style="color: aliceblue;" >{{user.roles}}</td>
                 <td><button (click)="openRolesModal(user)"  class="btn btn-info">Edit roles</button></td>
             </tr>
         </tbody>

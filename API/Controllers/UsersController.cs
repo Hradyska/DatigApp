@@ -38,10 +38,12 @@ public class UsersController : BaseApiController
         return Ok(users);
     }
 
-    [HttpGet("{username}")] // /api/users/2
+    [HttpGet("{username}")] // /api/users/username
     public async Task<ActionResult<MemberDto>> GetUser(string username)
     {
-        return await _uow.UserRepository.GetMemberAsync(username);
+        var currentUsername = User.GetUsername();
+        bool isCurrentUser = currentUsername == username ? true : false;
+        return await _uow.UserRepository.GetMemberAsync(username, isCurrentUser);
     }
 
     [HttpPut]
@@ -83,10 +85,6 @@ public class UsersController : BaseApiController
             Url = result.SecureUrl.AbsoluteUri,
             PublicId = result.PublicId
         };
-        if (user.Photos.Count == 0)
-        {
-            photo.IsMain = true;
-        }
 
         user.Photos.Add(photo);
 
@@ -113,12 +111,18 @@ public class UsersController : BaseApiController
             return NotFound();
         }
 
+        if (photo.IsApproved == false)
+        {
+            return BadRequest("This photo is unapproved.");
+        }
+
         if (photo.IsMain)
         {
             return BadRequest("This is already your main photo");
         }
 
         var currentMain = user.Photos.FirstOrDefault(x => x.IsMain);
+
         if (currentMain != null)
         {
             currentMain.IsMain = false;
@@ -130,14 +134,14 @@ public class UsersController : BaseApiController
             return NoContent();
         }
 
-        return BadRequest("problem with settig man photo");
+        return BadRequest("Problem with settig main photo");
     }
 
     [HttpDelete("delete-photo/{photoId}")]
     public async Task<ActionResult> DeletePhoto(int photoId)
     {
         var user = await _uow.UserRepository.GetUserByNameAsync(User.GetUsername());
-        var photo = user.Photos.FirstOrDefault(x => x.Id == photoId);
+        var photo = await _uow.PhotoRepository.GetPhotoById(photoId);
         if (photo == null)
         {
             return NotFound();
@@ -164,5 +168,23 @@ public class UsersController : BaseApiController
         }
 
         return BadRequest("Problem deleting photo");
+    }
+
+    [HttpDelete("delete-user/{username}")]
+    public async Task<ActionResult> DeleteUser(string username)
+    {
+        var user = await _uow.UserRepository.GetUserByNameAsync(username);
+        if (user == null)
+        {
+            return NotFound("User does not exist");
+        }
+
+        _uow.UserRepository.DeleteUser(user);
+        if (await _uow.Complete())
+        {
+            return Ok();
+        }
+
+        return BadRequest("Problem whith deleting user");
     }
 }

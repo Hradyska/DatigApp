@@ -106,5 +106,7 @@ export class MembersService {
     return getPaginatedResult<Member[]>(this.baseUrl + 'likes',params, this.http);
   }
 
-
+  deleteMember(username: string) {
+    return this.http.delete(this.baseUrl + 'users/delete-user/' + username);
+  }
 }
