@@ -7,7 +7,7 @@ import { MembersService } from 'src/app/_services/members.service';
 @Component({
   selector: 'app-member-list',
   templateUrl: './member-list.component.html',
-  styleUrls: ['./member-list.component.css']
+  styleUrls: ['./member-list.component.css'],
 })
 export class MemberListComponent implements OnInit {
   members: Member[] = [];
@@ -43,8 +43,8 @@ export class MemberListComponent implements OnInit {
 
   pageChanged(event: any) {
     if (this.userParams && this.userParams?.pageNumber !== event.page) {
-      this.userParams.pageNumber = event.page;
       this.memberService.setUserParams(this.userParams);
+      this.userParams.pageNumber = event.page;
       this.loadMembers(); 
     }
 

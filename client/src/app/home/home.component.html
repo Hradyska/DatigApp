@@ -1,21 +1,59 @@
-<div class="container-mt-5">
+<div class="container-mt-5 pageScroll ">
     <div *ngIf="!registerMode" style="text-align: center;">
         <h1>Find your match</h1>
         <p class="lead">Come on in to view your matches... all you need to do is sign up!</p>
         <div class="text-center">
-            <button (click)="registerToogle()" class="btn btn-primary btn-lg me-2">Register</button>
-            <button class="btn btn-primary btn-info btn-lg me-2">Learn more</button>
+            <button 
+                (click)="registerToogle()"
+                class="btn btn-primary btn-lg me-2"
+                >
+                Register
+            </button>
 
+            <button type="button" class="btn btn-primary btn-info btn-lg me-2" (click)="openModal(template)">Learn more</button>
+             <br>
+     
+                <ng-template #template>
+                    <div class="modal-header">
+                        <h4 class="modal-title pull-left">Information about App</h4>
+                        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+                        <span aria-hidden="true" class="visually-hidden">&times;</span>
+                        </button>
+                     </div>
+
+                     <div class="modal-body">
+                        <h5 class="text-bold">
+                            This is Dating Application with
+                        </h5>
+                        <ul>
+                           <li>Implementation drag and drop photo upload integrating into a cloud platform</li> 
+                           <li>Implementation a private messaging system</li>
+                           <li>Implementation filtering, sorting and paging of data</li>
+                           <li>Display notifications in Angular</li>
+                           <li>Implementation Authentication using JWT Authentication tokens</li>
+                           <li>Handling errors in the API and the SPA</li>
+                           <li>Persist data using Entity Framework Core</li>
+                           <li>Real time notifications and presence using SignalR</li>
+                        </ul>
+                            
+                        <h6 class="text-danger">
+                         This is learning project powered by Angular 16 & .Net 7
+                        </h6>
+                        <p>All of data are generaed whith 
+                        <a href="https://json-generator.com/"> JSON Generator</a>
+                        </p>
+                     </div>
+                </ng-template>
+            
         </div>
     </div>
 
     <div *ngIf="registerMode" class="container">
         <div class="row justify-content-center">
-            <div class="col-4">
+            <div class="form-container">
                 <app-register (cancelRegister)="cancelRegisterMode($event)"></app-register>
             </div>
         </div>
     </div>
-
-
+    
 </div>

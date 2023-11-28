@@ -7,7 +7,7 @@
     "editor.autoClosingBrackets": "languageDefined",
     "editor.autoClosingOvertype": "always",
     "editor.autoClosingQuotes": "languageDefined",
-    "editor.formatOnType": true,
+    "editor.formatOnType": false,
     "workbench.colorTheme": "Visual Studio 2019 Dark",
     "workbench.preferredDarkColorTheme": "Default Dark+",
     "workbench.preferredHighContrastColorTheme": "Default Dark+",

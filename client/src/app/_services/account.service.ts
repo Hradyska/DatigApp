@@ -4,8 +4,6 @@ import { User } from '../_models/user';
 import { BehaviorSubject, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { PresenceService } from './presence.service';
-import { MembersService } from './members.service';
-import { UserParams } from '../_models/userParams';
 
 @Injectable({
   providedIn: 'root'

@@ -1,11 +1,20 @@
-<div class="text-center mt-3">
+<div class="container-flex">
+    <div class="text-center mt-3">
     <h2>
         Your matches - {{pagination?.totalItems}} found
     </h2>
 </div>
-
-<div class="container mt-3"*ngIf="userParams" >
-    <form #form="ngForm" class="d-flex mb-3" (ngSubmit)="loadMembers()" autocomplete="off">
+    <div class="btn-group" dropdown  #dropdown="bs-dropdown" [autoClose]="false" [insideClick]="true">
+      <button id="button-custom-html" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+              aria-controls="dropdown-custom-html">
+        Filter <span class="caret"></span>
+      </button>
+ 
+    <ul id="dropdown-custom-html" *dropdownMenu class="dropdown-menu">
+    <div class="container mt-3" *ngIf="userParams" >
+  
+        
+    <form #form="ngForm" class="col mb-3" (ngSubmit)="loadMembers()" autocomplete="off">
         <div class="d-flex mx-2">
           <label class="col-form-label">Age from: </label>
            <input 
@@ -39,11 +48,14 @@
              </option>
             </select>
         </div>
+    <div class="col mt-3">
+        <div class="btn-group float-end mt-3">
+        <button class="btn btn-primary" type="submit">Apply Filter</button>
+        <button (click)="resetFilters()" class="btn btn-secondary" type="submit" >Reset Filter</button>
+        </div>
+    </div>
 
-        <button class="btn btn-primary ms-1" type="submit">Apply Filters</button>
-        <button (click)="resetFilters()" class="btn btn-secondary ms-1" type="submit">Reset Filters</button>
-
-        <div class="col">
+        <div class="col mt-3">
             <div class="btn-group float-end">
                 <button 
                     type="button"
@@ -65,13 +77,19 @@
                 </button>
             </div>
         </div>
+    <hr>
+        <div>
+             <button type="button" class="btn btn-danger mt-3" (click)="dropdown.hide()">Hide filter</button>
+        </div>
+        
     </form>
+
 </div>
+    </ul>
+    </div>
 
-
-
-<div class="row">
-    <div class="col-2" *ngFor="let member of members">
+<div class="row mt-3">
+    <div class="card-list" *ngFor="let member of members">
         <app-member-card [member]="member"></app-member-card>
     </div>
 </div>
@@ -89,4 +107,5 @@
         firstText="&laquo;" 
         lastText="&raquo;">   
     </pagination>
+</div>
 </div>

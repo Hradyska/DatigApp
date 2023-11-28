@@ -1,14 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../_services/account.service';
-import { Observable } from 'rxjs/internal/Observable';
-import { User } from '../_models/user';
-import { of } from 'rxjs/internal/observable/of';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { MembersService } from '../_services/members.service';
-import { UserParams } from '../_models/userParams';
-import { take } from 'rxjs';
-import { MemberListComponent } from '../members/member-list/member-list.component';
 
 @Component({
   selector: 'app-nav',
@@ -17,6 +10,7 @@ import { MemberListComponent } from '../members/member-list/member-list.componen
 })
 export class NavComponent implements OnInit {
   model: any = {};
+  isCollapsed = true;
 
   constructor(public accountService: AccountService,
     private router: Router,
