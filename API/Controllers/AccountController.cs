@@ -19,14 +19,14 @@ public class AccountController : BaseApiController
     private readonly ITokenService _tokenService;
     private readonly IMapper _mapper;
 
-    public AccountController(UserManager<AppUser> userManager, ITokenService tokenService,  IMapper mapper)
+    public AccountController(UserManager<AppUser> userManager, ITokenService tokenService, IMapper mapper)
     {
         _userManager = userManager;
         _tokenService = tokenService;
         _mapper = mapper;
     }
 
-    [HttpPost("register")] //POST: api/account/register
+    [HttpPost("register")] // POST: api/account/register
     public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
     {
         var user = _mapper.Map<AppUser>(registerDto);
@@ -35,13 +35,19 @@ public class AccountController : BaseApiController
             return BadRequest("Username is taken.");
         }
 
-        user. UserName = registerDto.Username.ToLower();
+        user.UserName = registerDto.Username.ToLower();
 
         var result = await _userManager.CreateAsync(user, registerDto.Password);
-        if (!result.Succeeded) return BadRequest(result.Errors);
+        if (!result.Succeeded)
+        {
+            return BadRequest(result.Errors);
+        }
 
         var roleResult = await _userManager.AddToRoleAsync(user, "Member");
-        if (!roleResult.Succeeded) return BadRequest(roleResult.Errors);
+        if (!roleResult.Succeeded)
+        {
+            return BadRequest(roleResult.Errors);
+        }
 
         return new UserDto
         {
@@ -58,16 +64,21 @@ public class AccountController : BaseApiController
         var user = await _userManager.Users
             .Include(p => p.Photos)
             .SingleOrDefaultAsync(x => x.UserName == loginDto.Username);
-        if (user == null) return Unauthorized("invalid username");
+        if (user == null)
+        {
+            return Unauthorized("invalid username");
+        }
 
         var result = await _userManager.CheckPasswordAsync(user, loginDto.Password);
-        if (!result) return Unauthorized("Invalid password");
-
+        if (!result)
+        {
+            return Unauthorized("Invalid password");
+        }
 
         return new UserDto
         {
             Username = user.UserName,
-            Token =  await _tokenService.CreateToken(user),
+            Token = await _tokenService.CreateToken(user),
             PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url,
             KnownAs = user.KnownAs,
             Gender = user.Gender
@@ -78,5 +89,4 @@ public class AccountController : BaseApiController
     {
         return await _userManager.Users.AnyAsync(x => x.UserName == username.ToLower());
     }
-
 }

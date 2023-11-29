@@ -8,15 +8,16 @@ namespace API.Data;
 
 public class DataContext : IdentityDbContext<AppUser, AppRole, int, IdentityUserClaim<int>, AppUserRole, IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<int>>
 {
-    public DataContext(DbContextOptions options) : base(options)
+    public DataContext(DbContextOptions options)
+        : base(options)
     {
     }
+
     public DbSet<UserLike> Likes { get; set; }
     public DbSet<Message> Messages { get; set; }
-    public DbSet<Group> Groups{ get; set; }
+    public DbSet<Group> Groups { get; set; }
     public DbSet<Connection> Connections { get; set; }
-
-
+    public DbSet<Photo> Photos { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -58,5 +59,7 @@ public class DataContext : IdentityDbContext<AppUser, AppRole, int, IdentityUser
         .HasOne(u => u.Sender)
         .WithMany(m => m.MessagesSent)
         .OnDelete(DeleteBehavior.Restrict);
+
+        builder.Entity<Photo>().HasQueryFilter(p => p.IsApproved);
     }
 }

@@ -31,6 +31,9 @@ import { PhotoManagementComponent } from './admin/photo-management/photo-managem
 import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
 import { RouteReuseStrategy } from '@angular/router';
 import { CustomRouteReuseStrategy } from './_services/customRouteReuseStraegy';
+import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.component';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+
 
 @NgModule({
   declarations: [
@@ -54,6 +57,8 @@ import { CustomRouteReuseStrategy } from './_services/customRouteReuseStraegy';
     UserManagementComponent,
     PhotoManagementComponent,
     RolesModalComponent,
+    ConfirmDialogComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -62,7 +67,8 @@ import { CustomRouteReuseStrategy } from './_services/customRouteReuseStraegy';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    CollapseModule.forRoot()
   ],
 
   providers: [

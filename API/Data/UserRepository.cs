@@ -1,5 +1,4 @@
-﻿using API.Data;
-using API.DTOs;
+﻿using API.DTOs;
 using API.Entities;
 using API.Helpers;
 using API.Interfaces;
@@ -7,7 +6,7 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 
-namespace API;
+namespace API.Data;
 
 public class UserRepository : IUserRepository
 {
@@ -20,12 +19,17 @@ public class UserRepository : IUserRepository
         _mapper = mapper;
     }
 
-    public async Task<MemberDto> GetMemberAsync(string username)
+    public async Task<MemberDto> GetMemberAsync(string username, bool isCurrentUser)
     {
-        return await _context.Users
-        .Where(x => x.UserName == username)
-        .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
-        .SingleOrDefaultAsync();
+        var query = _context.Users.Where(x => x.UserName == username)
+            .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
+            .AsQueryable();
+        if (isCurrentUser)
+        {
+            query = query.IgnoreQueryFilters();
+        }
+
+        return await query.FirstOrDefaultAsync();
     }
 
     public async Task<PagedList<MemberDto>> GetMembersAsync(UserParams userParams)
@@ -42,7 +46,7 @@ public class UserRepository : IUserRepository
         query = userParams.OrderBy switch
         {
             "created" => query.OrderByDescending(u => u.Created),
-            _ =>query.OrderByDescending(u => u.LastActive),
+            _ => query.OrderByDescending(u => u.LastActive),
 
         };
 
@@ -64,6 +68,14 @@ public class UserRepository : IUserRepository
             .SingleOrDefaultAsync(x => x.UserName == username);
     }
 
+    public async Task<string> GetUserGenderAsync(string username)
+    {
+        return await _context.Users
+        .Where(x => x.UserName == username)
+        .Select(g => g.Gender)
+        .FirstOrDefaultAsync();
+    }
+
     public async Task<IEnumerable<AppUser>> GetUsersAsync()
     {
         return await _context.Users
@@ -71,13 +83,13 @@ public class UserRepository : IUserRepository
             .ToListAsync();
     }
 
-    public async Task<bool> SaveAllAsync()
-    {
-        return await _context.SaveChangesAsync() > 0;
-    }
-
     public void Update(AppUser user)
     {
         _context.Entry(user).State = EntityState.Modified;
+    }
+
+    public void DeleteUser(AppUser appUser)
+    {
+        _context.Remove(appUser);
     }
 }

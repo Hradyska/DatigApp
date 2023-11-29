@@ -10,9 +10,10 @@ public class ExceptionMiddleware
     private readonly ILogger<ExceptionMiddleware> _logger;
     private readonly IHostEnvironment _environment;
 
-    public ExceptionMiddleware(RequestDelegate next,
-                               ILogger<ExceptionMiddleware> logger,
-                               IHostEnvironment environment)
+    public ExceptionMiddleware(
+        RequestDelegate next,
+        ILogger<ExceptionMiddleware> logger,
+        IHostEnvironment environment)
     {
         _next = next;
         _logger = logger;
@@ -21,10 +22,12 @@ public class ExceptionMiddleware
 
     public async Task InvokeAsync(HttpContext context)
     {
-        try{
+        try
+        {
             await _next(context);
         }
-        catch(Exception ex){
+        catch (Exception ex)
+        {
             _logger.LogError(ex, ex.Message);
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
@@ -38,8 +41,5 @@ public class ExceptionMiddleware
 
             await context.Response.WriteAsync(json);
         }
-
-
     }
-
 }

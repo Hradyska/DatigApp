@@ -16,15 +16,15 @@ export class MembersService {
   baseUrl = environment.apiUrl;
   members: Member[] = [];
   memberCache = new Map();
-  user: User | undefined;
+  user?: User | null;
   userParams: UserParams | undefined;
 
   constructor(private http: HttpClient, private accountService: AccountService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe({
       next: user => {
         if (user) {
-          this.user = user;
           this.userParams = new UserParams(user);
+          this.user = user;
         }
       }
     })
@@ -106,5 +106,7 @@ export class MembersService {
     return getPaginatedResult<Member[]>(this.baseUrl + 'likes',params, this.http);
   }
 
-
+  deleteMember(username: string) {
+    return this.http.delete(this.baseUrl + 'users/delete-user/' + username);
+  }
 }

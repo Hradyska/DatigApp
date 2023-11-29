@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-home',
@@ -8,8 +9,14 @@ import { Component } from '@angular/core';
 export class HomeComponent {
   registerMode = false;
   users: any;
-
-  constructor() { }
+  modalRef?: BsModalRef;
+ 
+  constructor(private modalService: BsModalService) {
+  }
+ 
+  openModal(template: any) {
+    this.modalRef = this.modalService.show(template);
+  }
 
   ngOnInit(): void {
   }
