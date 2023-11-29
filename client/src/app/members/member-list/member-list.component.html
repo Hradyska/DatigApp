@@ -50,16 +50,27 @@
         </div>
     <div class="col mt-3">
         <div class="btn-group float-end mt-3">
-        <button class="btn btn-primary" type="submit">Apply Filter</button>
-        <button (click)="resetFilters()" class="btn btn-secondary" type="submit" >Reset Filter</button>
+        <button 
+            class="btn btn-outline-success btn-sm"
+            type="submit"
+        >
+            Apply Filter
+        </button>
+        <button 
+            (click)="resetFilters()" 
+            class="btn btn-outline-secondary btn-sm" 
+            type="submit" 
+        >
+            Reset Filter
+        </button>
         </div>
     </div>
 
         <div class="col mt-3">
-            <div class="btn-group float-end">
+            <div class="btn-group float-end btn-sm">
                 <button 
                     type="button"
-                    class="btn btn-primary" 
+                    class="btn btn-outline-primary btn-sm" 
                     name="orderBy" 
                     [(ngModel)]="userParams.orderBy"
                     btnRadio="lastActive"
@@ -68,7 +79,7 @@
                 </button>
                  <button 
                     type="button"
-                    class="btn btn-primary" 
+                    class="btn btn-outline-primary btn-sm" 
                     name="orderBy" 
                     [(ngModel)]="userParams.orderBy"
                     btnRadio="created"

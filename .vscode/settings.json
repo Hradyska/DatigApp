@@ -14,17 +14,19 @@
     "dotnet.server.useOmnisharp": false,
     "editor.wordWrap": "on",
     "editor.autoClosingDelete": "always",
-    "editor.defaultFormatter": "ms-dotnettools.csdevkit",
+    "editor.defaultFormatter": "ms-dotnettools.vscodeintellicode-csharp",
     "editor.inlayHints.padding": true,
     "terminal.explorerKind": "external",
     "terminal.integrated.defaultProfile.windows": "Windows PowerShell",
     "terminal.integrated.fontFamily": "Consolas, 'Courier New', monospace",
-    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.fontSize": 12,
     "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
     "terminal.integrated.tabs.defaultColor": "terminal.ansiGreen",
     "terminal.integrated.tabs.defaultIcon": "git-branch",
     "csharp.format.enable": false,
     "javascript.format.insertSpaceAfterConstructor": true,
-    "dotnet.preferVisualStudioCodeFileSystemWatcher": false
+    "dotnet.preferVisualStudioCodeFileSystemWatcher": false,
+    "terminal.sourceControlRepositoriesKind": "both",
+    "editor.insertSpaces": false
   
 }
