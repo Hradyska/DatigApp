@@ -7,19 +7,19 @@
     "editor.autoClosingBrackets": "languageDefined",
     "editor.autoClosingOvertype": "always",
     "editor.autoClosingQuotes": "languageDefined",
-    "editor.formatOnType": false,
+    "editor.formatOnType": true,
     "workbench.colorTheme": "Visual Studio 2019 Dark",
     "workbench.preferredDarkColorTheme": "Default Dark+",
     "workbench.preferredHighContrastColorTheme": "Default Dark+",
     "dotnet.server.useOmnisharp": false,
     "editor.wordWrap": "on",
     "editor.autoClosingDelete": "always",
-    "editor.defaultFormatter": "ms-dotnettools.vscodeintellicode-csharp",
+    "editor.defaultFormatter": "ms-dotnettools.csdevkit",
     "editor.inlayHints.padding": true,
     "terminal.explorerKind": "both",
     "terminal.integrated.defaultProfile.windows": "Command Prompt",
     "terminal.integrated.fontFamily": "Consolas, 'Courier New', monospace",
-    "terminal.integrated.fontSize": 12,
+    "terminal.integrated.fontSize": 14,
     "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
     "terminal.integrated.tabs.defaultColor": "terminal.ansiGreen",
     "terminal.integrated.tabs.defaultIcon": "git-branch",
@@ -27,7 +27,6 @@
     "javascript.format.insertSpaceAfterConstructor": true,
     "dotnet.preferVisualStudioCodeFileSystemWatcher": false,
     "terminal.sourceControlRepositoriesKind": "both",
-    "editor.insertSpaces": false,
-    "terminal.integrated.copyOnSelection": true
+    "editor.insertSpaces": false
   
 }
