@@ -16,8 +16,8 @@
     "editor.autoClosingDelete": "always",
     "editor.defaultFormatter": "ms-dotnettools.vscodeintellicode-csharp",
     "editor.inlayHints.padding": true,
-    "terminal.explorerKind": "external",
-    "terminal.integrated.defaultProfile.windows": "Windows PowerShell",
+    "terminal.explorerKind": "both",
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
     "terminal.integrated.fontFamily": "Consolas, 'Courier New', monospace",
     "terminal.integrated.fontSize": 12,
     "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
@@ -27,6 +27,7 @@
     "javascript.format.insertSpaceAfterConstructor": true,
     "dotnet.preferVisualStudioCodeFileSystemWatcher": false,
     "terminal.sourceControlRepositoriesKind": "both",
-    "editor.insertSpaces": false
+    "editor.insertSpaces": false,
+    "terminal.integrated.copyOnSelection": true
   
 }
