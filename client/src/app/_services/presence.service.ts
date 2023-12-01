@@ -43,7 +43,7 @@ export class PresenceService {
     })
 
     this.hubConnection.on('NewMessageReceived', ({ username, knownAs }) => {
-      this.toastr.info('You have a new massage from ' + knownAs + '. Click me to see it!')
+      this.toastr.info('You have a new message from ' + knownAs + '. Click me to see it!')
         .onTap
         .pipe(take(1))
         .subscribe({

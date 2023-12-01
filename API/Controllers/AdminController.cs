@@ -104,7 +104,7 @@ public class AdminController : BaseApiController
         photo.IsApproved = true;
 
         var user = await _uow.UserRepository.GetUserByIdAsync(photo.AppUserId);
-        if (!user.Photos.Any())
+        if (user.Photos.Any(x => x.IsMain))
         {
             photo.IsMain = true;
         }

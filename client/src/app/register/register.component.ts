@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup = new FormGroup({});
   maxDate: Date = new Date();
   validationErrors: string[] | undefined;
+  patternTypes = ['lowerLetters', 'upperLetters', 'numbers', 'symbols'];
 
   constructor(private accountService: AccountService,
     private toastr: ToastrService,
@@ -26,6 +27,7 @@ export class RegisterComponent implements OnInit {
   }
 
   initializeForm() {
+    
     this.registerForm = this.fb.group({
       gender: ['male'],
       username: ['', Validators.required],
@@ -34,7 +36,7 @@ export class RegisterComponent implements OnInit {
       city: ['', Validators.required],
       country: ['', Validators.required],
            
-      password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]],
+      password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(8), this.checkStrenthValidationFn('numbers'), this.checkStrenthValidationFn('lowerLetters'), this.checkStrenthValidationFn('upperLetters'), this.checkStrenthValidationFn('symbols')]],
       confirmPassword:['', [Validators.required, this.matchValues('password')]],
     });
     this.registerForm.controls['password'].valueChanges.subscribe({
@@ -47,6 +49,35 @@ export class RegisterComponent implements OnInit {
       return control.value === control.parent?.get(matchTo)?.value ? null : {notMatching:true}
     }
   }
+
+checkStrength(p: string, patternTypes: string){
+  var type = patternTypes;
+  const regex = /[$-/:-?{-~!"^_@`\[\]]/;
+  var res: boolean = false;
+  switch (type) {
+    case 'lowerLetters':
+      res = /[a-z]+/.test(p);
+      break;
+    case 'upperLetters':
+      res = /[A-Z]+/.test(p);
+      break;
+    case 'numbers':
+      res = /[0-9]+/.test(p);
+      break;
+    case 'symbols':
+      res = regex.test(p);
+      break;
+  }
+  return res;
+}
+  
+  checkStrenthValidationFn(patternTypes: string): ValidatorFn{
+    var pattern: {}
+    return (control: AbstractControl) => {
+      return this.checkStrength(control.value, patternTypes) ? null : { [patternTypes] : true };
+    }
+  }
+  
   register() {
     const dob = this.getDateOnly(this.registerForm.controls['dateOfBirth'].value);
     const values ={...this.registerForm.value, dateOfBirth: dob}
@@ -70,4 +101,5 @@ export class RegisterComponent implements OnInit {
     let theDob = new Date(dob);
     return new Date(theDob.setMinutes(theDob.getMinutes() - theDob.getTimezoneOffset())).toISOString().slice(0, 10);
   }
+
 }
