@@ -1,6 +1,6 @@
 # DatingApp 
-[!NOTE]
-This App is in process of development!
+> [!NOTE]
+> This App is in process of development!
 
 
 ## ASP.NET Core & Angular 16
