@@ -14,4 +14,3 @@
 - Handling errors in the API and the SPA
 - Persist data using Entity Framework Core
 - Real time notifications and presence using SignalR
-
