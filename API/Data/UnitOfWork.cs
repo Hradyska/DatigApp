@@ -6,28 +6,28 @@ namespace API.Data;
 public class UnitOfWork : IUnitOfWork
 {
     private readonly IMapper _mapper;
-    private readonly DataContext _dataContext;
+    private readonly DataContext _context;
 
     public UnitOfWork(DataContext dataContext, IMapper mapper)
     {
         _mapper = mapper;
-        _dataContext = dataContext;
+        _context = dataContext;
     }
 
-    public IUserRepository UserRepository => new UserRepository(_dataContext, _mapper);
+    public IUserRepository UserRepository => new UserRepository(_context, _mapper);
 
-    public IMessageRepository MessageRepository => new MessageRepository(_dataContext, _mapper);
+    public IMessageRepository MessageRepository => new MessageRepository(_context, _mapper);
 
-    public ILikesRepository LikesRepository => new LikesRepoitory(_dataContext);
-    public IPhotoRepository PhotoRepository => new PhotoRepository(_dataContext, _mapper);
+    public ILikesRepository LikesRepository => new LikesRepoitory(_context);
+    public IPhotoRepository PhotoRepository => new PhotoRepository(_context, _mapper);
 
     public async Task<bool> Complete()
     {
-        return await _dataContext.SaveChangesAsync() > 0;
+        return await _context.SaveChangesAsync() > 0;
     }
 
     public bool HasChanges()
     {
-        return _dataContext.ChangeTracker.HasChanges();
+        return _context.ChangeTracker.HasChanges();
     }
 }

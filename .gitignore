@@ -295,3 +295,4 @@ terraform.tfstate.backup
 
 API/appsettings.json
 
+.vscode/settings.json
